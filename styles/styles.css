@@ -593,14 +593,14 @@ section article {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  background-color:#fff;
+  background-color:#FDB35C;
   display: block;
   margin: 0 5px 0 0;
   display: inline-block;
   cursor: pointer;
 }
 .pagination a.selected {
-  background-color: #494949;
+  background-color: #13c4a5;
 }
 .pagination a span {
   display: none;
