@@ -62,7 +62,7 @@ table {
 textarea{resize: none}
 ::-moz-selection {
     color: #fff;
-    background: #eb5946;
+    background: #F5F6F7;
     text-shadow: none;
 }
 
