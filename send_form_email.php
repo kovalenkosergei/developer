@@ -1,19 +1,25 @@
 <?php 
 // EDIT THE 2 LINES BELOW AS REQUIRED
-$send_email_to = "admin@egrappler.com";$email_subject = "Your email subject line";
+$send_email_to = "kovalenko.sergei.vlad@gmail.com";
+$email_subject = "Your email subject line";
 function send_email($name,$email,$email_message,$phone)
 {
   global $send_email_to;
-  global $email_subject;  $headers = "MIME-Version: 1.0" . "\r\n";
+  global $email_subject;
+  $headers = "MIME-Version: 1.0" . "\r\n";
   $headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
   $headers .= "From: ".$email. "\r\n";
   $message = "<strong>Email = </strong>".$email."<br>";
-  $message .= "<strong>Name = </strong>".$name."<br>";    if(!empty($phone))	$message .= "<strong>Phone = </strong>".$phone."<br>";
+  $message .= "<strong>Name = </strong>".$name."<br>";  
+  if(!empty($phone))
+	$message .= "<strong>Phone = </strong>".$phone."<br>";
   $message .= "<strong>Message = </strong>".$email_message."<br>";
   @mail($send_email_to, $email_subject, $message,$headers);
   return true;
-}
-function validate($name,$email,$message,$phone){
+}
+
+function validate($name,$email,$message,$phone)
+{
   $return_array = array();
   $return_array['success'] = '1';
   $return_array['name_msg'] = '';
@@ -31,7 +37,8 @@ function validate($name,$email,$message,$phone){
       $return_array['success'] = '0';
       $return_array['email_msg'] = 'enter valid email.';  
     }
-  }  if($name == '')
+  }
+  if($name == '')
   {
     $return_array['success'] = '0';
     $return_array['name_msg'] = 'name is required';
@@ -43,7 +50,12 @@ function validate($name,$email,$message,$phone){
       $return_array['success'] = '0';
       $return_array['name_msg'] = 'enter valid name.';
     }
-  }  $string_exp = "/^[A-Za-z .'-]+$/";  if (preg_match($string_exp, $phone)) {		$return_array['success'] = '0';		$return_array['phone_msg'] = 'enter valid phone no.';  }			
+  }
+  $string_exp = "/^[A-Za-z .'-]+$/";
+  if (preg_match($string_exp, $phone)) {
+		$return_array['success'] = '0';
+		$return_array['phone_msg'] = 'enter valid phone no.';
+  }			
   if($message == '')
   {
     $return_array['success'] = '0';
@@ -57,10 +69,21 @@ function validate($name,$email,$message,$phone){
     }
   }
   return $return_array;
-}
-$name = $_POST['name'];$email = $_POST['email'];
+}
+
+$name = $_POST['name'];
+$email = $_POST['email'];
 $message = $_POST['message'];
-$phone = $_POST['phone'];
-$return_array = validate($name,$email,$message,$phone);
-if($return_array['success'] == '1'){	send_email($name,$email,$message,$phone);}header('Content-type: text/json');echo json_encode($return_array);die();
-?>
+$phone = $_POST['phone'];
+
+$return_array = validate($name,$email,$message,$phone);
+
+if($return_array['success'] == '1')
+{
+	send_email($name,$email,$message,$phone);
+}
+header('Content-type: text/json');
+echo json_encode($return_array);
+die();
+?>
+

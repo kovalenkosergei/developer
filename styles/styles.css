@@ -26,7 +26,7 @@ body:after {
   clear: both;
 }
 a, a:visited, a:active {
- color:#FDB35C;
+ color: #000000;
 }
 a:hover { color:#777;}
 html{
